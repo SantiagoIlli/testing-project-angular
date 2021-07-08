@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core'
+import {Component, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core'
 import {MetodoService} from '../metodo.service'
 
 @Component({
@@ -10,18 +10,18 @@ import {MetodoService} from '../metodo.service'
 
 export class ButtonRodriComponent implements OnInit {
 
-
-  constructor(private element: ElementRef, private MetodoService:MetodoService) { }
-
+  @Input() counter: number; 
+  constructor(private element: ElementRef) { }
+  
+  @Output() Click = new EventEmitter(); 
   ngOnInit(): void {
-    console.log('Me instanciaron', this.element);
+    
   }
-  public counter = this.MetodoService.counter;
-  public arraySrc = this.MetodoService.arraySrc;
-
-  CountClick(): void {
-    this.MetodoService.theyClickedMe() 
+  
+  CountClick() {
+    this.Click.emit(this.counter);
   }
+  
     
   }
 
