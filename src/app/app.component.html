@@ -3,7 +3,8 @@
 <!--     [src]="usuario"-->
 <!--     alt="google">-->
 
-<app-button-rodri [counter] = 'counter' (Click)="CounterClick($event)" 
-  *ngFor="let usuario of [1,2,3]"
+<app-button-rodri (click)="CounterClick()"
+  *ngFor="let usuario of [1,2,3]" 
   class="globalSize"
   style="max-width: 100px; max-height: 100px;  margin-right: 20px"></app-button-rodri>
+  <p>La cuenta va en <span class="rojo">{{counter}}</span></p>

@@ -17,11 +17,6 @@ export class ButtonRodriComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  
-  CountClick() {
-    this.Click.emit(this.counter);
-  }
-  
     
   }
 
