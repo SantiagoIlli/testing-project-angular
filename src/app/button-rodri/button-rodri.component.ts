@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core'
+import {Component, ElementRef, OnInit, Input, Output, EventEmitter, ChangeDetectorRef} from '@angular/core'
 import {MetodoService} from '../metodo.service'
 
 @Component({
@@ -10,21 +10,28 @@ import {MetodoService} from '../metodo.service'
 
 export class ButtonRodriComponent implements OnInit {
 
-  @Input() counter: number; 
-  constructor(private element: ElementRef) { }
-  
-  @Output() Click = new EventEmitter(); 
+  @Input() image: string;
+  @Input() obj: {
+    value: number
+  };
+
+  @Output() Click = new EventEmitter();
+  constructor(private element: ElementRef,
+              private cdr: ChangeDetectorRef) { }
+
   ngOnInit(): void {
-    
   }
-  
-  CountClick() {
-    this.Click.emit(this.counter);
-  }
-  
-    
+
+  countClick(): void {
+    this.obj.value++;
+    console.log('La cuenta va: ' + this.obj.value);
+    this.cdr.detectChanges();
+    // this.Click.emit();
   }
 
 
-  
+  }
+
+
+
 

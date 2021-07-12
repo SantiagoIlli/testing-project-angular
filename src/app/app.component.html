@@ -2,8 +2,22 @@
 <!--<img *ngFor="let usuario of myArray" style="width: 150px; margin-right: 20px"-->
 <!--     [src]="usuario"-->
 <!--     alt="google">-->
+<h1>{{'Count is ' + rodriObject.value }}</h1>
+<app-button-rodri [obj]="rodriObject"
+                  [image]="src"
+                  *ngFor="let src of arrayOfSrcs"
+                  class="globalSize"
+                  style="max-width: 100px; max-height: 100px;  margin-right: 20px"></app-button-rodri>
 
-<app-button-rodri [counter] = 'counter' (Click)="CounterClick($event)" 
-  *ngFor="let usuario of [1,2,3]"
-  class="globalSize"
-  style="max-width: 100px; max-height: 100px;  margin-right: 20px"></app-button-rodri>
+<!--const arrayOfSrcs;-->
+<!--['auto', 'cosa2', 'cosa2222'].forEach( (src, i) => {-->
+<!--console.log(src, i);-->
+<!--&lt;!&ndash; auto, 0 &ndash;&gt;-->
+<!--&lt;!&ndash; cosa2, 1 &ndash;&gt;-->
+<!--&lt;!&ndash; cosa2222, 2 &ndash;&gt;-->
+<!-- new buttonRodri(arrayOfSrcs, i);-->
+<!--});-->
+
+<!--let image of ['assets/fixing-settings.png',-->
+<!--'assets/footer-info.png',-->
+<!--'assets/ox.png']-->
