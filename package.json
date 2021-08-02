@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.11",
+    "@angular/cdk": "^10.2.7",
     "@angular/common": "~10.0.11",
     "@angular/compiler": "~10.0.11",
     "@angular/core": "~10.0.11",
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~10.0.11",
     "@angular/router": "~10.0.11",
     "@ngneat/transloco": "^2.19.1",
+    "bootstrap": "^5.0.2",
     "howler": "^2.2.0",
     "ngox-post-message": "0.0.2",
     "ngx-quill": "^12.0.1",
@@ -50,5 +52,17 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiagoIlli/testing-project-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SantiagoIlli/testing-project-angular/issues"
+  },
+  "homepage": "https://github.com/SantiagoIlli/testing-project-angular#readme"
 }

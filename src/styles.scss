@@ -1,5 +1,19 @@
+
 /* You can add global styles to this file, and also import other style files */
+
+
 .globalSize {
-  width: 100px;
-  height: 100px;
+    width: 150px;
+    height: 150px;
+    margin:20px;
+    cursor:pointer;
 }
+
+
+.irregularSize {
+    width: 170px;
+    height: 170px;
+    cursor:pointer;
+    border: 3px solid darkviolet;
+}
+

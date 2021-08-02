@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core'
+import {Component, ElementRef, OnInit, Output, EventEmitter, Input} from '@angular/core'
 import {MetodoService} from '../metodo.service'
 
 @Component({
@@ -10,14 +10,27 @@ import {MetodoService} from '../metodo.service'
 
 export class ButtonRodriComponent implements OnInit {
 
-  @Input() counter: number; 
-  constructor(private element: ElementRef) { }
+  
+  constructor(private element: ElementRef, private MetodoService: MetodoService) { }
   
   @Output() Click = new EventEmitter(); 
   ngOnInit(): void {
-    
+        
   }
-    
+  
+
+  @Input() imagen:string;
+  @Input() imgShape:string="globalSize";
+
+  changeShape() {
+    this.imgShape="irregularSize";
+  }
+  
+  reShape() {
+    this.imgShape="globalSize";
+
+  }
+
   }
 
 

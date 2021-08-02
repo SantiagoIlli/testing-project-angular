@@ -1,10 +1,10 @@
-<h1 (click)="changeNgIfValue()"> hola </h1>
+<h1 (click)="changeNgIfValue()"> LAYOUT </h1>
 <!--<img *ngFor="let usuario of myArray" style="width: 150px; margin-right: 20px"-->
 <!--     [src]="usuario"-->
 <!--     alt="google">-->
-
-<app-button-rodri (click)="CounterClick()"
-  *ngFor="let usuario of [1,2,3]" 
-  class="globalSize"
-  style="max-width: 100px; max-height: 100px;  margin-right: 20px"></app-button-rodri>
-  <p>La cuenta va en <span class="rojo">{{counter}}</span></p>
+<div fxLayout="align" [align]="align"  id="cont-app-rodri">
+<app-button-rodri (click)="counterClick()" *ngFor="let src of arraySrc" [imagen]="src" id="app">align</app-button-rodri>
+</div>
+<div fxLayoutAlign="space-evenly center">
+<button type="button" (click)="changeDir()" (click)="changeAlign()">Cambio!</button>
+</div>

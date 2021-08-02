@@ -2,3 +2,34 @@
     color:red;
     font-weight: 700;
 }
+
+h1 {
+    display:flex;
+    justify-content: center;
+
+}
+
+
+
+
+button {
+
+    width: 175px;
+    height: 35px;
+    background-color: darkslateblue;
+    color:white;
+    cursor:pointer;
+    border:none;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+button:hover{
+    background-color: slateblue;
+}
+
+button:active{
+    background-color: darkslateblue;
+}
+
+
