@@ -2,9 +2,18 @@
 <!--<img *ngFor="let usuario of myArray" style="width: 150px; margin-right: 20px"-->
 <!--     [src]="usuario"-->
 <!--     alt="google">-->
-<div fxLayout="align" [align]="align"  id="cont-app-rodri">
-<app-button-rodri (click)="counterClick()" *ngFor="let src of arraySrc" [imagen]="src" id="app">align</app-button-rodri>
+<div [fxLayout]="layOutService.align" id="cont-app-rodri">
+
+
+<app-button-rodri *ngFor="let element of arraySrc"
+ [imagen]="element.src" id="app"  [selected]="element.selected" [id]="element.id"  
+ (onChangeShape)= "changeShape($event)"></app-button-rodri>
 </div>
+
+
 <div fxLayoutAlign="space-evenly center">
-<button type="button" (click)="changeDir()" (click)="changeAlign()">Cambio!</button>
+<button type="button" (click)="changeDir()">Cambio!</button>
 </div>
+
+
+

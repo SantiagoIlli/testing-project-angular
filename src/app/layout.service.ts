@@ -13,7 +13,9 @@ public align:string = "row";
 
 changeDirection() {
     this.isColumn=!this.isColumn;
+    this.currentAlign();
     console.log(this.isColumn);
+    console.log(this.align);
 }
 
 currentAlign() {

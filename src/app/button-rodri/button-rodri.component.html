@@ -1,4 +1,3 @@
-<img  [src]="imagen" [ngClass]="imgShape"
- (mousedown)="changeShape()" (mouseup)="reShape()" alt="" >
+<img [src]="imagen" [ngClass]="{'irregularSize':selected, 'globalSize':!selected }" (click)="changeShapeEmit()"  alt="">
 
 

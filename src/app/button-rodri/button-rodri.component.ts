@@ -13,25 +13,28 @@ export class ButtonRodriComponent implements OnInit {
   
   constructor(private element: ElementRef, private MetodoService: MetodoService) { }
   
-  @Output() Click = new EventEmitter(); 
-  ngOnInit(): void {
-        
-  }
-  
 
+  ngOnInit(): void {     
+  }
+
+  
   @Input() imagen:string;
-  @Input() imgShape:string="globalSize";
-
-  changeShape() {
-    this.imgShape="irregularSize";
-  }
+  @Input() selected:boolean=false;
+  @Input() id:number;
+  @Output() onChangeShape: EventEmitter<number> = new EventEmitter<number>()
   
-  reShape() {
-    this.imgShape="globalSize";
+  changeShapeEmit() {
+    this.onChangeShape.emit(this.id);
+    console.log(this.id);
+  } 
+  
+ 
+  
+}
 
-  }
 
-  }
+  
+  
 
 
   

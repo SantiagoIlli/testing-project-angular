@@ -3,6 +3,7 @@
     font-weight: 700;
 }
 
+
 h1 {
     display:flex;
     justify-content: center;
@@ -10,10 +11,7 @@ h1 {
 }
 
 
-
-
 button {
-
     width: 175px;
     height: 35px;
     background-color: darkslateblue;
@@ -24,12 +22,12 @@ button {
     margin-top: 20px;
 }
 
+
 button:hover{
     background-color: slateblue;
 }
 
+
 button:active{
     background-color: darkslateblue;
 }
-
-
