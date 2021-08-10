@@ -1,19 +1,28 @@
-<h1 (click)="changeNgIfValue()"> LAYOUT </h1>
+<h1 (click)="changeNgIfValue()"> SCROLL & SELECT </h1>
 <!--<img *ngFor="let usuario of myArray" style="width: 150px; margin-right: 20px"-->
 <!--     [src]="usuario"-->
 <!--     alt="google">-->
-<div [fxLayout]="layOutService.align" id="cont-app-rodri">
 
+<div class="cont-scroll" fxLayout="row">
+<button class="boton izq" (click)="scrollTo(false)">←</button>
 
-<app-button-rodri *ngFor="let element of arraySrc"
- [imagen]="element.src" id="app"  [selected]="element.selected" [id]="element.id"  
- (onChangeShape)= "changeShape($event)"></app-button-rodri>
+<div class="app-scroll" fxLayoutAlign="start">
+
+<app-button-rodri *ngFor="let element of arraySrc; index as i"
+[isSelected]="element.selected"
+[element]="element"
+[leyenda]="element.leyenda"
+(click)="selectedImage(i)">
+
+</app-button-rodri>
+</div>
+<button class="boton der" (click)="scrollTo(true)" >→</button>
 </div>
 
 
-<div fxLayoutAlign="space-evenly center">
-<button type="button" (click)="changeDir()">Cambio!</button>
+<div class="app-cont" fxLayout="row" fxLayoutAlign="center center">
+<div class="app-scroll" fxLayoutAlign="start center">
+<app-selected-images *ngFor="let element of selectedImages; index as i" [isSelected]="element.selected"
+[element]="element"></app-selected-images>
 </div>
-
-
-
+</div>

@@ -1,19 +1,46 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+.animated{
+ transition: 0.12s ease-in;
+}
+
 
 .globalSize {
-    width: 150px;
-    height: 150px;
-    margin:20px;
+    width: 200px;
+    height: 200px;
+    margin:5px;
     cursor:pointer;
+
 }
 
 
-.irregularSize {
-    width: 170px;
-    height: 170px;
+.selectedTrue {
+    width: 90px;
+    height: 20px;
     cursor:pointer;
-    border: 3px solid darkviolet;
+    text-decoration:underline;
+    text-decoration-color:#F70BBE;
+    text-decoration-style: solid;
+    text-decoration-thickness: 3px;
 }
 
+.selectedFalse {
+    width: 120px;
+    height: 20px;
+    cursor:pointer;
+}
+
+.app-scroll {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin:0px 5px;
+    width:1050px;
+    overflow:hidden;
+}
+
+.app-cont{
+    overflow: hidden;
+    margin-top:15px;
+}

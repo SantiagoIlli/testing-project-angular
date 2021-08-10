@@ -1,41 +1,35 @@
-import {Component, ElementRef, OnInit, Output, EventEmitter, Input} from '@angular/core'
-import {MetodoService} from '../metodo.service'
+  import {Component, ElementRef, OnInit, Input} from '@angular/core'
+  import {MetodoService} from '../metodo.service'
+  import {suma} from '../functions/utils'
+  import {ButtonRodriInfo} from '../models/types'
 
-@Component({
+  @Component({
   selector: 'app-button-rodri',
   templateUrl: './button-rodri.component.html',
   styleUrls: ['./button-rodri.component.scss'],
   providers: [MetodoService]
-})
-
-export class ButtonRodriComponent implements OnInit {
-
+  })  
   
-  constructor(private element: ElementRef, private MetodoService: MetodoService) { }
+  export class ButtonRodriComponent implements OnInit {
   
-
-  ngOnInit(): void {     
+  @Input() isSelected:boolean;
+  @Input() element:ButtonRodriInfo;
+  @Input() leyenda:string;
+  
+  
+  constructor(private MetodoService: MetodoService) { }
+  
+  ngOnInit(): void {   
+      console.log(suma(1,'hola'))
   }
-
   
-  @Input() imagen:string;
-  @Input() selected:boolean=false;
-  @Input() id:number;
-  @Output() onChangeShape: EventEmitter<number> = new EventEmitter<number>()
   
-  changeShapeEmit() {
-    this.onChangeShape.emit(this.id);
-    console.log(this.id);
-  } 
+   
   
- 
-  
+  //formula emisora con respectiva variable y tipo de variable
 }
 
 
   
-  
 
-
-  
 

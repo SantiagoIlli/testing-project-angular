@@ -1,3 +1,6 @@
-<img [src]="imagen" [ngClass]="{'irregularSize':selected, 'globalSize':!selected }" (click)="changeShapeEmit()"  alt="">
 
+<div class="img-cont" fxLayout="column" fxLayoutAlign="space-evenly center">
+<img [src]="element.src" class="globalSize" alt="">
+<h4 [ngClass]="{'selectedTrue':isSelected, 'selectedFalse':!isSelected }">{{leyenda}}</h4>
+</div>
 

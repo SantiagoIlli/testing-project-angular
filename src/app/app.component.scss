@@ -7,21 +7,21 @@
 h1 {
     display:flex;
     justify-content: center;
+    margin-bottom: 30px;
+    font-family: 'Courier New', Courier, monospace;
 
 }
 
 
 button {
-    width: 175px;
+    width: 110px;
     height: 35px;
     background-color: darkslateblue;
     color:white;
     cursor:pointer;
     border:none;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin: 95px 20px 0 20px;
 }
-
 
 button:hover{
     background-color: slateblue;
@@ -31,3 +31,5 @@ button:hover{
 button:active{
     background-color: darkslateblue;
 }
+
+
