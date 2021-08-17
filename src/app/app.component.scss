@@ -13,7 +13,7 @@ h1 {
 }
 
 
-button {
+.ableButton {
     width: 110px;
     height: 35px;
     background-color: darkslateblue;
@@ -23,12 +23,22 @@ button {
     margin: 95px 20px 0 20px;
 }
 
-button:hover{
+.disableButton {
+    width: 110px;
+    height: 35px;
+    color:white;
+    border:none;
+    margin: 95px 20px 0 20px;
+    background-color: grey;
+}
+
+
+.ableButton:hover{
     background-color: slateblue;
 }
 
 
-button:active{
+.ableButton:active{
     background-color: darkslateblue;
 }
 

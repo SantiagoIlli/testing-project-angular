@@ -4,17 +4,18 @@
 <!--     alt="google">-->
 
 <div class="cont-scroll" fxLayout="row">
-<button class="boton izq" (click)="scrollTo(false)">←</button>
+<button 
+[ngClass]="{'disableButton':buttonDisableL, 'ableButton':!buttonDisableL }"  (click)="scrollLeft()">←</button>
 
 <div class="app-scroll" id="app-scroll" fxLayoutAlign="start">
 <app-button-rodri *ngFor="let element of arraySrc; index as i"
 [isSelected]="element.selected"
 [element]="element"
 [leyenda]="element.leyenda"
-(click)="selectedImage(i)">
+(click)="selectedImage2(i)">
 </app-button-rodri>
 </div>
-<button class="boton der" (click)="scrollTo(true)" >→</button>
+<button [ngClass]="{'disableButton':buttonDisableR, 'ableButton':!buttonDisableR }" onchange="disableButtonMethod()" (click)="scrollRight()" >→</button>
 </div>
 
 
