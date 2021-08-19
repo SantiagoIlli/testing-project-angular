@@ -20,7 +20,7 @@
   constructor(private MetodoService: MetodoService) { }
   
   ngOnInit(): void {   
-      console.log(suma(1,'hola'))
+
   }
   
   

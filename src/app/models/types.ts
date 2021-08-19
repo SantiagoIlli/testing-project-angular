@@ -3,5 +3,6 @@ export interface ButtonRodriInfo {
     selected: boolean;
     leyenda: string;
     xAxis: number;
+    id:number;
 }
  
