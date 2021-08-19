@@ -116,8 +116,10 @@ import { translate } from '@ngneat/transloco';
 
 
   private updateArraySrc() {
-    this.arraySrcRed = this.arraySrc.filter((z, index: number) => index >= this.posI && index < this.posF);
+    this.arraySrcRed = this.arraySrc.slice(this.posI,this.posF);
+   // this.arraySrcReds = this.arraySrc.filter((z, index: number) => index >= this.posI && index < this.posF);
   }
+
 
   scrollLeft()
    {
@@ -140,6 +142,16 @@ import { translate } from '@ngneat/transloco';
       this.buttonDisableR = this.posF>=this.arraySrc.length;     
     }
     
+    
+  automaticScroll(element: ButtonRodriInfo) {
+    const i = this.arraySrc.indexOf(element);
+    this.posI = Math.max(Math.min(i, this.arraySrc.length-5, i-2), 0)
+    this.posF = this.posI+5;
+    this.updateArraySrc();
+    this.arrowState();
+    console.log(i);
+  }
+
 
  /* selectedImage(i) {
     const selIm = this.arraySrc[i];
@@ -227,11 +239,8 @@ import { translate } from '@ngneat/transloco';
 
 
 
-
-  automaticScroll(element: ButtonRodriInfo) {
-   const i = this.arraySrc.indexOf(element);
-   const extremoSup = Math.min(i+1, this.arraySrc.length); // 5 // 2                       
-   if(extremoSup===this.arraySrc.length || 2===(this.arraySrc.length-i)){
+// 5 // 2                       
+   /*if(extremoSup===this.arraySrc.length || 2===(this.arraySrc.length-i)){
     this.posI=this.arraySrc.length-5
     this.posF=this.arraySrc.length;
    }
@@ -242,7 +251,7 @@ import { translate } from '@ngneat/transloco';
    else{
     this.posI=i-2;
     this.posF=i+3;
-   }
+   } /
    
    /*switch(i){
     case 0:
@@ -270,10 +279,7 @@ import { translate } from '@ngneat/transloco';
       this.posF=i+3;
       console.log("default");
     } */
-    this.updateArraySrc();
-    this.arrowState();
-    console.log(i);
-  }
+    
 
 
  
