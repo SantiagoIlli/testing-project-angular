@@ -132,14 +132,16 @@ asdasdas() {
 
 
  scrollToR():void{
- if (this.t<(220*(this.arraySrc.length-2))){
-  this.buttonDisableL= false;
-  this.t+=1050;
-  this.appScroll.nativeElement.scrollBy({
-    left: 1050,
-    behaviour: 'smooth'
+ 
+ const measureDisable = (220*(this.arraySrc.length-3));
+ if (this.t<=measureDisable){
+ this.buttonDisableL= false;
+ this.t+=1050;
+ this.allButtonRodriComponents[4].scrollIntoView({
+    behavior:"smooth" 
   })}
-  if (this.t>=(220*(this.arraySrc.length-2))){
+  else
+  {
     this.buttonDisableR=true;
   }
  }
