@@ -1,4 +1,4 @@
-import { Component, Input, QueryList, ViewChildren, ViewChild } from '@angular/core';
+import { Component, Input, QueryList, ViewChildren, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
 import { MetodoService } from './metodo.service';
 import { layOutService } from './layout.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -21,13 +21,15 @@ import { translate } from '@ngneat/transloco';
 
 
 
-  export class AppComponent {
+  export class AppComponent implements AfterViewInit{
   title = 'testing-project';
 
 
   @ViewChildren(ButtonRodriComponent) allButtonRodriComponents: QueryList<ButtonRodriComponent>;
-  
 
+  @ViewChild("appScroll") appScroll:ElementRef;
+  @ViewChild("appRodri") appRodri:ElementRef;
+  //es static salvo que este controlado por el ngif
 
   public arraySrc: ButtonRodriInfo[] = [{
     src: "https://www.freejpg.com.ar/asset/400/de/def1/F100027556.jpg", selected: false, leyenda: "Machu Picchu", xAxis: 105
@@ -66,11 +68,11 @@ import { translate } from '@ngneat/transloco';
 
 
 
+  public appB = document.getElementById("app-scroll");
 
   public selectedImages: ButtonRodriInfo[] = [];
-  public positionSel: number = 520;
+  public positionSel: number = 525;
   public positionImg: number;
-
 
 
   //cambiar el false a true
@@ -80,8 +82,8 @@ import { translate } from '@ngneat/transloco';
   public i: number = 0;
   public t: number = 0;
   public truers: Array<ButtonRodriInfo> = []
-  public buttonDisableL:boolean=true;
-  public buttonDisableR:boolean=false;
+  public buttonDisableL:boolean = true;
+  public buttonDisableR:boolean = false;
 
   constructor(private MetodoService: MetodoService, public layOutService: layOutService,
     private cdr: ChangeDetectorRef) {
@@ -90,50 +92,71 @@ import { translate } from '@ngneat/transloco';
   // @Input("align") align:string =// this.layOutService.align;
 
 
-ngOnChanges():void {
-  this.disableButtonMethod();
-}
-
   counter: number = 0;
   public ngIfValue: boolean;
 
 
 
+  ngAfterViewInit():void{
+     
+  }
+
   changeNgIfValue(): void {
     this.ngIfValue = !this.ngIfValue;
     console.log('funciona', this.ngIfValue);
   }
-
   
+  
+@HostListener('document:keydown')
+asdasdas() {
+  console.log('testS')
+  this.appScroll.nativeElement.scrollTo(-500,0);
+}
+
+
+
+ scrollToL():void
+ 
+ { if(this.t>0) {
+  this.buttonDisableR=false;
+  this.t-=1050
+  this.appScroll.nativeElement.scrollBy({
+    left: -1050,
+    behaviour: 'smooth'
+  })
+ } if(this.t<1050){
+   this.buttonDisableL=true;
+ }
+}
+
+
+
+ scrollToR():void{
+ if (this.t<(220*(this.arraySrc.length-2))){
+  this.buttonDisableL= false;
+  this.t+=1050;
+  this.appScroll.nativeElement.scrollBy({
+    left: 1050,
+    behaviour: 'smooth'
+  })}
+  if (this.t>=(220*(this.arraySrc.length-2))){
+    this.buttonDisableR=true;
+  }
+ }
+
     
-  scrollTo(right: boolean) {
+
+
+ /* scrollTo(right: boolean) {
+    console.log("hola");
    this.t += right ? -1050 : 1050;
     anime({
-      targets: "app-button-rodri",
-      translateX: this.t,
+      targets: this.appScroll.nativeElement,
+      scrollBy: (this.t,0),
       easing: 'easeInOutSine'
     })
-   console.log(this.t);
-   }
+   }*/
 
-
-
-  selectedImage(i) {
-    const selIm = this.arraySrc[i];
-    
-    if (this.selectedImages.length < 5) {
-      if (!selIm.selected) {
-        this.selectedImages.push(selIm);
-    } else {
-        this.selectedImages = this.selectedImages.filter(e => e !== selIm);
-    }
-      selIm.selected = !selIm.selected;
-    } 
-      else {
-      this.selectedImages = this.selectedImages.filter(e => e !== selIm);
-      selIm.selected = false;
-    }   
-  }
 
    
    selectedImage2(i) {
@@ -149,26 +172,23 @@ ngOnChanges():void {
 
  
 
-  scrollRight() {
+ /* scrollRight() {
     if(this.t>-(220*(this.arraySrc.length-2)))
     {
     this.scrollTo(true)
     this.positionSel * 2;
-    this.buttonDisableL= false;
-    
+    this.buttonDisableL= false;  
     } 
-    if(this.t<-(220*(this.arraySrc.length-2)))
+    if(this.t<=-(220*(this.arraySrc.length-2)))
     {
     this.buttonDisableR=true;
-    console.log(this.t>-(220*(this.arraySrc.length)-2));
     }
-    }
+    }*/
 
 
 
-  scrollLeft() 
+ /* scrollLeft() 
   {
-    console.log(this.t);
     if(this.t<=-1050){
     this.scrollTo(false);
     this.positionSel / 2;
@@ -176,43 +196,19 @@ ngOnChanges():void {
     }if( this.t>-1050){
      this.buttonDisableL=true;
     }
-  } 
-
-
-
-  disableButtonMethod(){
-  }
-
-
-  public changeShape(i): void {
-    // const selectedElement = this.arraySrc[i];
-    // selectedElement.selected = !selectedElement.selected;
-    // this.truers.push(selectedElement);
-    // const n = 2;
-    // this.truers = this.truers.filter(z => z.selected);
-    // const filterFunc : (number)=> boolean = index => index >= this.truers.length - n
-    // const toFalse = this.truers.filter((z, index) =>  !filterFunc(index) ); 
-    // this.truers = this.truers.filter((z, index) =>  filterFunc(index) );
-    // toFalse.forEach(z=> z.selected=false);
-    // if (this.truers.length > 2)
-    //  {
-    //   this.truers[0].selected = false;
-    //   this.truers.shift();
-    // }
-    console.log(this.truers);
-    // for(let t = 0; t<2;t++){
-    //console.log(this.truers[t].selected);
-  }
-
-
+  } */
 
 
   automaticScroll(positionImg) {
-    anime({
+    this.appScroll.nativeElement.scrollTo({
+      left:  positionImg-this.positionSel,
+      behavior: "smooth"
+    })
+    /*anime({
       targets: "app-button-rodri",
       translateX: this.positionSel - positionImg,
       easing: 'easeInOutSine'
-    })
+    })*/
     console.log(this.positionSel);
   }
 
