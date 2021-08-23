@@ -11,17 +11,26 @@
   })  
   
   export class ButtonRodriComponent implements OnInit {
+  scrollIntoMe() {
+    this.elemntRef.nativeElement.scrollIntoView({
+      behaviour:"smooth"
+    });
+  }
   
   @Input() isSelected:boolean;
   @Input() element:ButtonRodriInfo;
   @Input() leyenda:string;
+ 
   
   
-  constructor(private MetodoService: MetodoService) { }
+  constructor(private MetodoService: MetodoService,
+    public elemntRef: ElementRef) { }
   
-  ngOnInit(): void {   
-      console.log(suma(1,'hola'))
+  ngOnInit(): void {
+      console.log(suma(1,'hola'), this.elemntRef)
   }
+  
+
   
   
    

@@ -7,6 +7,8 @@ import { ButtonRodriInfo } from './models/types';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import anime from 'animejs/lib/anime.es.js';
 import { translate } from '@ngneat/transloco';
+import { TimerOxService } from 'ox-core';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 
 
@@ -19,17 +21,18 @@ import { translate } from '@ngneat/transloco';
   ]
  })
 
-
-
   export class AppComponent implements AfterViewInit{
   title = 'testing-project';
 
-
+  
   @ViewChildren(ButtonRodriComponent) allButtonRodriComponents: QueryList<ButtonRodriComponent>;
-
+  
   @ViewChild("appScroll") appScroll:ElementRef;
+  
   @ViewChild("appRodri") appRodri:ElementRef;
   //es static salvo que este controlado por el ngif
+
+
 
   public arraySrc: ButtonRodriInfo[] = [{
     src: "https://www.freejpg.com.ar/asset/400/de/def1/F100027556.jpg", selected: false, leyenda: "Machu Picchu", xAxis: 105
@@ -66,21 +69,19 @@ import { translate } from '@ngneat/transloco';
   }
   ]
 
-
+  
 
   public appB = document.getElementById("app-scroll");
-
   public selectedImages: ButtonRodriInfo[] = [];
   public positionSel: number = 525;
   public positionImg: number;
-
 
   //cambiar el false a true
   //el el selected siguen vinculados
   //
   private isColumn = this.layOutService.isColumn;
   public i: number = 0;
-  public t: number = 0;
+  public t: number = 5;
   public truers: Array<ButtonRodriInfo> = []
   public buttonDisableL:boolean = true;
   public buttonDisableR:boolean = false;
@@ -91,22 +92,21 @@ import { translate } from '@ngneat/transloco';
 
   // @Input("align") align:string =// this.layOutService.align;
 
-
   counter: number = 0;
   public ngIfValue: boolean;
 
-
-
   ngAfterViewInit():void{
-     
   }
 
-  changeNgIfValue(): void {
+
+
+changeNgIfValue(): void {
     this.ngIfValue = !this.ngIfValue;
     console.log('funciona', this.ngIfValue);
-  }
+}
   
   
+
 @HostListener('document:keydown')
 asdasdas() {
   console.log('testS')
@@ -116,39 +116,40 @@ asdasdas() {
 
 
  scrollToL():void
- 
- { if(this.t>0) {
-  this.buttonDisableR=false;
-  this.t-=1050
-  this.appScroll.nativeElement.scrollBy({
-    left: -1050,
-    behaviour: 'smooth'
-  })
- } if(this.t<1050){
+ {
+  if(this.t>0) 
+  {
+   this.t-=5; 
+   this.buttonDisableR=false;
+   const buttonComponent:ButtonRodriComponent = this.allButtonRodriComponents.toArray()[this.t];
+   buttonComponent.scrollIntoMe()
+ } 
+ if(this.t<5){
    this.buttonDisableL=true;
  }
+ console.log(this.t);
 }
 
 
 
- scrollToR():void{
- 
- const measureDisable = (220*(this.arraySrc.length-3));
- if (this.t<=measureDisable){
- this.buttonDisableL= false;
- this.t+=1050;
- this.allButtonRodriComponents[4].scrollIntoView({
-    behavior:"smooth" 
-  })}
-  else
+ scrollToR():void
+ {
+ const measureDisable = (this.arraySrc.length-5>=this.t);
+ if (measureDisable)
+ {
+  this.t+=5;
+  this.buttonDisableL= false;
+  const buttonComponent: ButtonRodriComponent = this.allButtonRodriComponents.toArray()[this.t]; 
+  buttonComponent.scrollIntoMe();
+  }
+ else
   {
     this.buttonDisableR=true;
   }
+  console.log(this.t);
  }
 
     
-
-
  /* scrollTo(right: boolean) {
     console.log("hola");
    this.t += right ? -1050 : 1050;
@@ -158,10 +159,9 @@ asdasdas() {
       easing: 'easeInOutSine'
     })
    }*/
-
-
    
-   selectedImage2(i) {
+   selectedImage2(i)
+    {
      const selImage = this.arraySrc[i];
      if (this.selectedImages.length < 5 && !selImage.selected) {
        this.selectedImages.push(selImage);
@@ -169,10 +169,8 @@ asdasdas() {
      } else {
       this.selectedImages = this.selectedImages.filter(e => e !== selImage);
       selImage.selected = false;
-     }
+    }
    }
-
- 
 
  /* scrollRight() {
     if(this.t>-(220*(this.arraySrc.length-2)))
@@ -185,9 +183,7 @@ asdasdas() {
     {
     this.buttonDisableR=true;
     }
-    }*/
-
-
+ }*/
 
  /* scrollLeft() 
   {
@@ -198,7 +194,8 @@ asdasdas() {
     }if( this.t>-1050){
      this.buttonDisableL=true;
     }
-  } */
+  }
+  */
 
 
   automaticScroll(positionImg) {
@@ -215,14 +212,10 @@ asdasdas() {
   }
 
 
-
-
   public changeDir(): void {
     this.layOutService.changeDirection();
     this.cdr.detectChanges();
   }
-
-
 
 
 }
