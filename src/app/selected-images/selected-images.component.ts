@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import {ButtonRodriInfo} from '../models/types'
 
 @Component({
@@ -8,10 +8,19 @@ import {ButtonRodriInfo} from '../models/types'
 })
 export class SelectedImagesComponent implements OnInit {
   
+
+
   @Input() isSelected:boolean;
  
   @Input() element:ButtonRodriInfo;
-  constructor() { }
+  constructor(private elementRef:ElementRef) { }
+  
+  scrollIntoMe2() {
+    this.elementRef.nativeElement.scrollIntoView({
+      behaviour:"smooth",
+      inline:"end"
+    });
+  }
 
   ngOnInit(): void {
   }

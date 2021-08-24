@@ -13,7 +13,15 @@
   export class ButtonRodriComponent implements OnInit {
   scrollIntoMe() {
     this.elemntRef.nativeElement.scrollIntoView({
-      behaviour:"smooth"
+      behavior:"smooth",
+      inline:"center"
+    });
+  }
+
+  scrollIntoMe2() {
+    this.elemntRef.nativeElement.scrollIntoView({
+      behavior:"smooth",
+      inline:"end"
     });
   }
   

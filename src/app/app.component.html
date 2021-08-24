@@ -28,6 +28,6 @@ id="i"
 <div class="app-scroll" fxLayoutAlign="start center">
 
 <app-selected-images *ngFor="let element of selectedImages; index as i" [isSelected]="element.selected"
-[element]="element" (click)="automaticScroll(element.xAxis)"></app-selected-images>
+[element]="element" (click)="automaticScroll(element)"></app-selected-images>
 </div>
 </div>

@@ -9,6 +9,7 @@ import anime from 'animejs/lib/anime.es.js';
 import { translate } from '@ngneat/transloco';
 import { TimerOxService } from 'ox-core';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { SelectedImagesComponent } from './selected-images/selected-images.component';
 
 
 
@@ -27,6 +28,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   
   @ViewChildren(ButtonRodriComponent) allButtonRodriComponents: QueryList<ButtonRodriComponent>;
   
+  @ViewChildren(SelectedImagesComponent) allSelectedImages :QueryList<SelectedImagesComponent>
+
   @ViewChild("appScroll") appScroll:ElementRef;
   
   @ViewChild("appRodri") appRodri:ElementRef;
@@ -75,7 +78,6 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   public selectedImages: ButtonRodriInfo[] = [];
   public positionSel: number = 525;
   public positionImg: number;
-
   //cambiar el false a true
   //el el selected siguen vinculados
   //
@@ -85,10 +87,11 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   public truers: Array<ButtonRodriInfo> = []
   public buttonDisableL:boolean = true;
   public buttonDisableR:boolean = false;
-
   constructor(private MetodoService: MetodoService, public layOutService: layOutService,
     private cdr: ChangeDetectorRef) {
   }
+
+
 
   // @Input("align") align:string =// this.layOutService.align;
 
@@ -115,42 +118,50 @@ asdasdas() {
 
 
 
+disableButton() {
+  const cuestionLengthMax = this.t <= this.arraySrc.length-5;
+  const cuestionLengthMin = this.t > 0;
+  this.buttonDisableR=!cuestionLengthMax;
+  this.buttonDisableL=!cuestionLengthMin;
+}
+
+
  scrollToL():void
  {
   if(this.t>0) 
   {
    this.t-=5; 
-   this.buttonDisableR=false;
-   const buttonComponent:ButtonRodriComponent = this.allButtonRodriComponents.toArray()[this.t];
-   buttonComponent.scrollIntoMe()
+   this.scrollIntoComponent();
+   this.disableButton();
  } 
- if(this.t<5){
-   this.buttonDisableL=true;
- }
  console.log(this.t);
 }
+
+
+  private scrollIntoComponent() {
+    this.allButtonRodriComponents.toArray()[this.t].scrollIntoMe2();
+  }
+
+  private autoScrollView(i) {
+    this.allButtonRodriComponents.toArray()[i].scrollIntoMe();
+  } 
 
 
 
  scrollToR():void
  {
- const measureDisable = (this.arraySrc.length-5>=this.t);
+ const measureDisable = (this.arraySrc.length-5>this.t);
  if (measureDisable)
  {
   this.t+=5;
-  this.buttonDisableL= false;
-  const buttonComponent: ButtonRodriComponent = this.allButtonRodriComponents.toArray()[this.t]; 
-  buttonComponent.scrollIntoMe();
-  }
- else
-  {
-    this.buttonDisableR=true;
+  this.scrollIntoComponent();
+  this.disableButton();
   }
   console.log(this.t);
  }
 
     
- /* scrollTo(right: boolean) {
+ /* scrollTo(right: boolea) {
     console.log("hola");
    this.t += right ? -1050 : 1050;
     anime({
@@ -198,17 +209,16 @@ asdasdas() {
   */
 
 
-  automaticScroll(positionImg) {
-    this.appScroll.nativeElement.scrollTo({
-      left:  positionImg-this.positionSel,
-      behavior: "smooth"
-    })
+  automaticScroll(i) {
+    const indexArraySrc = this.arraySrc.indexOf(i);
+    this.autoScrollView(indexArraySrc);
     /*anime({
       targets: "app-button-rodri",
       translateX: this.positionSel - positionImg,
       easing: 'easeInOutSine'
     })*/
-    console.log(this.positionSel);
+    if(indexArraySrc<=0)
+    console.log(indexArraySrc);
   }
 
 
