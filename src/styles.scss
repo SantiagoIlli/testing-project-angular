@@ -23,10 +23,12 @@
 .selectedSize {
     width: 200px;
     height: 200px;
-    margin:5px;
+    margin:30px 5px 5px 5px;
     cursor:pointer;
     animation-name: scaleChange;
     animation-duration: 0.3s;
+    
+    
 }
 
 
@@ -60,23 +62,57 @@
     text-decoration-thickness: 3px;
 }
 
-.selectedFalse {
+.selectedFalse
+ {
     width: 120px;
     height: 20px;
     cursor:pointer;
 }
 
-.app-scroll {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
+.app-scroll-1 {  
     margin:0px 5px;
+    position:relative;
     width:1050px;
-    max-width: 3150px;
-    overflow:hidden;
+    z-index: 10;
+    overflow: hidden;
 }
 
-.app-cont{
+.cont-absolute {
+    display:flex;
+    flex-direction: row;
+    position:absolute;
+    width:3150px;
+   }
+
+.img-cont {
+    position:relative;
+}
+
+
+
+.cont-scroll{
     overflow: hidden;
     margin-top:15px;
+    position:relative;
+    height:290px;
+
+}
+
+.app-scroll-2 {
+    margin:0px 5px;
+    position:absolute;
+}
+
+
+
+
+
+
+
+
+
+.app-cont{
+  position:relative;
+  top:130px;
+  left:0;
 }

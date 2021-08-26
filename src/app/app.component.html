@@ -4,10 +4,11 @@
 <!--     alt="google">-->
 
 <div class="cont-scroll" fxLayout="row">
-<button 
-[ngClass]="{'disableButton':buttonDisableL, 'ableButton':!buttonDisableL }"  (click)="scrollLeft()">←</button>
 
-<div class="app-scroll" id="app-scroll" fxLayoutAlign="start">
+<button [ngClass]="{'disableButton':buttonDisableL, 'ableButton':!buttonDisableL }"  (click)="automaticScroll(xAxisMov + 1050)">←</button>
+
+<div class="app-scroll-1" id="app-scroll">
+<div class="cont-absolute">
 <app-button-rodri *ngFor="let element of arraySrc; index as i"
 [isSelected]="element.selected"
 [element]="element"
@@ -15,14 +16,15 @@
 (click)="selectedImage2(i)">
 </app-button-rodri>
 </div>
-<button [ngClass]="{'disableButton':buttonDisableR, 'ableButton':!buttonDisableR }" onchange="disableButtonMethod()" (click)="scrollRight()" >→</button>
+</div>
+<button [ngClass]="{'disableButton':buttonDisableR, 'ableButton':!buttonDisableR }" onchange="disableButtonMethod()" (click)="automaticScroll(xAxisMov - 1050)" >→</button>
 </div>
 
 
 <div class="app-cont" fxLayout="row" fxLayoutAlign="center center">
-<div class="app-scroll" fxLayoutAlign="start center">
+<div class="app-scroll-2" fxLayoutAlign="start center">
 
 <app-selected-images *ngFor="let element of selectedImages; index as i" [isSelected]="element.selected"
-[element]="element" (click)="automaticScroll(element.xAxis)"></app-selected-images>
+[element]="element" (click)="automaticScroll(525 - element.xAxis)"></app-selected-images>
 </div>
 </div>
